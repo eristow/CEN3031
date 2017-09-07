@@ -7,7 +7,7 @@ var findLibraryWest = function() {
    */
 
     //get the name Library West
-    User.find({name: 'Library West'}, function(err, listing) {
+    Listing.find({name: 'Library West'}, function(err, listing) {
         if(err) throw err;
 
         //object of the user
@@ -24,7 +24,7 @@ var removeCable = function() {
    */
     
     //find the code 'CABL'
-    User.findOneAndRemove({code: 'CABL'}, function(err, listing) {
+    Listing.findOneAndRemove({code: 'CABL'}, function(err, listing) {
         if (err) throw err;
 
         //we have deleted the instance
@@ -38,7 +38,7 @@ var updatePhelpsLab = function() {
    */
     
     //find the PhelpsMemorial and update the address
-    User.findOneAndUpdate({name: 'Phelps Laboratory'}, {address: 'Phelps Lab, Gainesville, FL 32603'}, function (err, listing) {
+    Listing.findOneAndUpdate({name: 'Phelps Laboratory'}, {address: 'Phelps Lab, Gainesville, FL 32603'}, function (err, listing) {
         if(err) throw err;
 
         //we have updated the Lab
