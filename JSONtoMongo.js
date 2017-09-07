@@ -9,6 +9,9 @@ var fs = require('fs'),
     Listing = require('./ListingSchema.js'), 
     config = require('./config');
 
+var contents = fs.readFileSync("./listings.json");
+var listings = JSON.parse(contents);
+
 /* Connect to your database */
 mongoose.connect('mongodb://eristow:password123@ds129344.mlab.com:29344/cen3031-eristow');
 
@@ -17,15 +20,15 @@ mongoose.connect('mongodb://eristow:password123@ds129344.mlab.com:29344/cen3031-
   and then save it to your Mongo database 
  */
 
-fs.readFile('./listings.json', 'utf8', function(err, data) {
-    if(err) throw err;
-    var json = JSON.parse(data);
-
-    Listing.collection.insert(json, function(err){
-        //console.log(data);
-        if(err) throw err;
+for(var i = 0; i < listings.entries.length; i++) {
+    var entry = listings.entries[i];
+    entry["created_at"] = null;
+    entry["updated_at"] = null;
+    var model1 = new Listing(entry);
+    model1.save(function(err) {
+        if(err) return handleError(err);
     });
-});
+}
 
 /* 
   Once you've written + run the script, check out your MongoLab database to ensure that 
