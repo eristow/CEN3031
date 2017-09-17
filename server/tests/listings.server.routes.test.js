@@ -38,6 +38,10 @@ describe('Listings CRUD tests', function() {
           .end(function(err, res) {
             should.not.exist(err);
             should.exist(res);
+            //TODO remove
+            console.log('retrieve single:' + res.body.name);
+            console.log(res.body.code);
+            console.log(res.body.address);
             res.body.name.should.equal('Library West');
             res.body.code.should.equal('LBW');
             res.body.address.should.equal('1545 W University Ave, Gainesville, FL 32603, United States');
@@ -60,6 +64,8 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res.body._id);
+        console.log(res.body.name);
+        console.log(res.body.code);
         res.body.name.should.equal('Introduction to Software Engineering');
         res.body.code.should.equal('CEN3035');
         res.body.address.should.equal('432 Newell Dr, Gainesville, FL 32611');
@@ -81,6 +87,8 @@ describe('Listings CRUD tests', function() {
       .end(function(err, res) {
         should.not.exist(err);
         should.exist(res.body._id);
+        console.log(res.body.name);
+        console.log(res.body.code);
         res.body.name.should.equal('Introduction to Software Engineering');
         res.body.code.should.equal('CEN3031');
         res.body.address.should.equal('432 Newell Dr, Gainesville, FL 32611');
